@@ -1,0 +1,90 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.calendar {
+    border: 1px solid #000;
+}
+
+.calendar .header {
+    text-align: center;
+    padding: 10px;
+}
+
+.calendar table {
+    width: 100%;
+}
+
+.compItem {
+    color: white;
+    text-decoration: none;
+}
+.calendar table tr {
+}
+
+            .calendar table tr th, .calendar table tr td {
+                font-weight: normal;
+                text-align: center;
+                vertical-align: top;
+                padding: 20px;
+                width: 14.25%;
+            }
+
+            .calendar table tr th {
+                background: #f0f0f0;
+            }
+
+            .calendar table tr td {
+                padding-top: 20px;
+                height: 50px;
+            }
+                .calendar table tr td .day {
+                    font-size: 30px;
+                    margin: 5px;
+                }
+
+                .calendar table tr td .day .compItem {
+                    color: black;
+                }
+
+
+                .calendar table tr td .not-current-month .compItem {
+                    color: #ccc !important;
+                }
+                .calendar table tr td .weekend-or-holiday .compItem{
+                    color: #ff0000;
+                }
+
+                .calendar table tr td .today .compItem {
+                    color:black;
+                }
+                .calendar table tr td .today {
+                    border: 2px solid DarkTurquoise;
+                }
+
+                .calendar table tr td .day .date {
+                    font-size: 20px;
+                }
+                .calendar table tr td .event {
+                    background-color: DarkTurquoise !important;
+                }
+                .calendar table tr td .not-current-month {
+                    color: #ccc !important;
+                    background-color: white !important;
+                }
+
+                

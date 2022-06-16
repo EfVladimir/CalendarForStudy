@@ -1,0 +1,16 @@
+﻿@model Group
+
+@{
+    ViewData["Title"] = "Edit Group";
+}
+<div class="container"> 
+    <form class="form-group" asp-controller="Group" asp-action="Edit" method="post">
+        <div class="form-group">
+            <label for="Name">Name</label>
+            <input name="Name" placeholder="My name" />
+        </div>
+        <div class="form-control">
+            <input class="btn btn-link" type="submit" value="submit" />
+        </div>
+    </form>
+</div>

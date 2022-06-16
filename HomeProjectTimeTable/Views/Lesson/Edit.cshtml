@@ -1,0 +1,75 @@
+﻿@model Lesson
+
+@{
+    ViewData["Title"] = "Lesson Edit";
+}
+<div class="container"> 
+    <form class="form-group" asp-controller="Lesson" asp-action="Edit" method="post">
+        <div class="form-group">
+            <label for="DayOfWeek">Choose DayOfWeek</label>
+            <select class="form-control" name="DayOfWeek">
+                @for(int i = 0; i<7; i++)
+                {
+                    <option value="@ViewBag.Days[i]">
+                        @ViewBag.Days[i].ToString()
+                    </option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="DayOfWeek">Write TimeStart(xx:xx)</label>
+            <input type="datetime" name="TimeStart"/>
+        </div>
+        <div class="form-group">
+            <label for="DayOfWeek">Write TimeFinish(xx:xx)</label>
+            <input type="datetime" name="TimeFinish"/>
+        </div>
+        <div class="form-group">
+            <label for="SubjectId">Choose Subject</label>
+            <select class="form-control" name="SubjectId">
+                @foreach(var subject in (IEnumerable<Subject>)ViewBag.Subjects)
+                {
+                    <option value="@subject.Id">
+                        @subject.Name
+                    </option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="TeacherId">Choose Teacher</label>
+            <select class="form-control" name="TeacherId">
+                @foreach(var teacher in (IEnumerable<Teacher>)ViewBag.Teachers)
+                {
+                    <option value="@teacher.Id">
+                        @teacher.Name
+                    </option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="GroupId">Choose Group</label>
+            <select class="form-control" name="GroupId">
+                @foreach(var position in (IEnumerable<Group>)ViewBag.Groups)
+                {
+                    <option value="@position.Id">
+                        @position.Name
+                    </option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="ClassroomId">Choose Classroom</label>
+            <select class="form-control" name="ClassroomId">
+                @foreach(var position in (IEnumerable<Classroom>)ViewBag.Classrooms)
+                {
+                    <option value="@position.Id">
+                        @position.Name
+                    </option>
+                }
+            </select>
+        </div>
+        <div class="form-control">
+            <input class="btn btn-link" type="submit" value="submit" />
+        </div>
+    </form>
+</div>

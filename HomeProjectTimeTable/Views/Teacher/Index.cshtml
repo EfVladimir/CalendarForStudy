@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Teacher>
+
+@{
+    ViewData["Title"] = "Groups";
+}
+<div class="container">
+    <h2>List of teachers</h2>
+        <div class="form-group">
+    <a class="btn btn-link" asp-controller="Teacher" asp-action="Create">Create new teacher</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">SecondName</th>
+                <th scope="col">LastName</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var teacher in Model)
+            {
+                
+
+                <tr>
+                    <th>@teacher.Id</th>
+                    <td>@teacher.Name</td>
+                    <td>@teacher.SecondName</td>
+                    <td>@teacher.LastName</td>
+                    <form class="form-group" asp-controller="Teacher" asp-action="Delete" method="post" asp-route-id="@teacher.Id">
+                    <td>
+                        <a class="btn btn-link" asp-controller="Teacher" asp-action="Edit" asp-route-id="@teacher.Id">Edit Teacher</a>|
+                        <input type="submit" value="Delete" class="btn btn-link">
+                    </td>
+                    </form>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>
+

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Classroom>
+
+@{
+    ViewData["Title"] = "Classrooms";
+}
+<div class="container">
+    <h2>List of Classroom</h2>
+        <div class="form-group">
+    <a class="btn btn-link" asp-controller="Classroom" asp-action="Create">Create new Classroom</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var classroom in Model)
+            {
+                
+
+                <tr>
+                    <th>@classroom.Id</th>
+                    <td>@classroom.Name</td>
+                    <form class="form-group" asp-controller="Classroom" asp-action="Delete" method="post" asp-route-id="@classroom.Id">
+                    <td>
+                        <a class="btn btn-link" asp-controller="Classroom" asp-action="Edit" asp-route-id="@classroom.Id">Edit Classroom</a>|
+                        <input type="submit" value="Delete" class="btn btn-link">
+                    </td>
+                    </form>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>
+

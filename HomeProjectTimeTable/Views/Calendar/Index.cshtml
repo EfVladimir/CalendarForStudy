@@ -1,0 +1,70 @@
+﻿@model Calendar
+
+@{
+    ViewData["Title"] = "Calendar";
+}
+
+            <div id="modDialog" class="modal fade" >
+                <div id="dialogContent" class="modal-dialog"></div>
+            </div>
+<div class="form-group">
+            <div class="form-group">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    @ViewBag.DisplayGroup
+                </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                @foreach(var group in (IEnumerable<Group>)ViewBag.Groups)
+                {
+                    <li><a class="dropdown-item" asp-action="Index" asp-controller="Calendar" asp-route-id="@group.Id">@group.Name</a></li>
+                }
+            </ul>
+</div>
+<div class="calendar">
+  <div class="header">
+      <form asp-controller="Calendar" asp-action="Index"  method="get">
+        <button type="submit" class="dropdown-item" name="_ind" value="@ViewBag.Ind[0]">Назад</button>
+        <input type="text" class="dropdown-item text-data" name="data" value="@ViewBag.Data"/>
+        <button type="submit" class="dropdown-item" name="_ind" value="@ViewBag.Ind[1]">Вперед</button>
+      </form>
+  </div>
+  <table cellpadding="0" cellspacing="0">
+    <tr>
+      <th>Пн</th>
+      <th>Вт</th>
+      <th>Ср</th>
+      <th>Чт</th>
+      <th>Пт</th>
+      <th>Сб</th>
+      <th>Вс</th>
+    </tr>
+    @for (int i = 0; i < this.Model.Days.GetLength(0); i++)
+    {
+      <tr>
+        @for (int j = 0; j != this.Model.Days.GetLength(1); j++)
+        {
+          <td>
+            <div class="day  @(this.Model.Days[i,j].IsNotCurrentMonth ? "not-current-month" : null) @(this.Model.Days[i,j].IsWeekendOrHoliday ? "weekend-or-holiday" : null) @(this.Model.Days[i,j].IsToday ? "today" : null) @(this.Model.Days[i,j].IsLesson ? "event" : null)">
+                    @Html.ActionLink(@Model.Days[i, j].Date.Day.ToString("00"), "Detail", new { idDay = ViewBag.Days[j], idGroup = ViewBag.Group}, new { @class = "compItem " })
+            </div>
+          </td>
+        }
+      </tr>
+    }
+  </table>
+</div>
+@section scripts
+{
+    <script>
+        $(function () {
+            $.ajaxSetup({ cache: false });
+           $(".compItem").click(function (e) {
+                e.preventDefault();
+                $.get(this.href, function (data) {
+                    $('#dialogContent').html(data);
+                    $('#modDialog').modal('show');
+                });
+            });
+        })
+    </script>
+}

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Lesson>
+<div class="modal-content">
+    <div class="modal-header">
+        <h4>Список предметов</h4>
+    </div>
+    @foreach(var subject in Model)
+    {
+        <div class="modal-body">
+        <dl class="dl-horizontal">
+            <dt>Группа:</dt>
+            <dd>@subject.Group.Name</dd>
+            <dt>Предмет:</dt>
+            <dd>@subject.Subject?.Name</dd>
+            <dt>Время</dt>
+            <dd>@subject.TimeStart.ToString("t") - @subject.TimeFinish.ToString("t")</dd>
+            <dt>Учитель</dt>
+            <dd>@subject.Teacher.Name</dd>
+            <dt>Кабинет</dt>
+            <dd>@subject.Classroom.Name</dd>
+        </dl>
+    </div>
+    }
+</div>

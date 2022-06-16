@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Lesson>
+
+@{
+    ViewData["Title"] = "Users";
+}
+<div class="container">
+    <h2>List of users</h2>
+        <div class="form-group">
+    <a class="btn btn-link" asp-controller="Lesson" asp-action="Create">Create new Lesson</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Subject</th>
+                <th scope="col">DayOfWeek</th>
+                <th scope="col">Teacher</th>
+                <th scope="col">Group</th>
+                <th scope="col">Classroom</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var lesson in Model)
+            {
+                
+
+                <tr>
+                    <th>@lesson.Id</th>
+                    <td>@lesson.Subject?.Name</td>
+                    <td>@lesson.DayOfWeek.ToString()</td>
+                    <td>@lesson.Teacher?.Name</td>
+                    <td>@lesson.Group?.Name</td>
+                    <td>@lesson.Classroom?.Name</td>
+                    <form class="form-group" asp-controller="Lesson" asp-action="Delete" method="post" asp-route-id="@lesson.Id">
+                    <td>
+                        <a class="btn btn-link" asp-controller="Lesson" asp-action="Edit" asp-route-id="@lesson.Id">Edit Lesson</a>|
+                        <input type="submit" value="Delete" class="btn btn-link">
+                    </td>
+                    </form>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>

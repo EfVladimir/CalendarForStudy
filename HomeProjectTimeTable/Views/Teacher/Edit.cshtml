@@ -1,0 +1,20 @@
+﻿@model Teacher
+
+@{
+    ViewData["Title"] = "Teacher Edit";
+}
+<div class="container"> 
+    <form class="form-group" asp-controller="Teacher" asp-action="Edit" method="post">
+        <div class="form-group">
+            <label for="Name">Name</label>
+            <input name="Name" placeholder="My name" />
+            <label for="SecondName">SecondName</label>
+            <input name="SecondName" placeholder="My SecondName" />
+            <label for="LastName">LastName</label>
+            <input name="LastName" placeholder="My LastName" />
+        </div>
+        <div class="form-control">
+            <input class="btn btn-link" type="submit" value="submit" />
+        </div>
+    </form>
+</div>

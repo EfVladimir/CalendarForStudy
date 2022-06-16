@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Subject>
+
+@{
+    ViewData["Title"] = "Subjects";
+}
+<div class="container">
+    <h2>List of Subjects</h2>
+        <div class="form-group">
+    <a class="btn btn-link" asp-controller="Subject" asp-action="Create">Create new subject</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var subject in Model)
+            {
+                
+
+                <tr>
+                    <th>@subject.Id</th>
+                    <td>@subject.Name</td>
+                    <form class="form-group" asp-controller="Subject" asp-action="Delete" method="post" asp-route-id="@subject.Id">
+                    <td>
+                        <a class="btn btn-link" asp-controller="Subject" asp-action="Edit" asp-route-id="@subject.Id">Edit Subject</a>|
+                        <input type="submit" value="Delete" class="btn btn-link">
+                    </td>
+                    </form>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>
+
